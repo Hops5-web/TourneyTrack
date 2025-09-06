@@ -137,6 +137,19 @@
       font-weight: bold;
       font-size: 1.1rem;
     }
+    .player-place {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      font-weight: bold;
+      color: white;
+      font-size: 0.9rem;
+      background: var(--bs-secondary);
+    }
 
     /* Конструктор */
     .constructor-section {
@@ -428,6 +441,35 @@
       return "secondary";
     }
 
+    // Функция сортировки игроков этапа
+    function sortStagePlayers(players) {
+      // Сначала попробуем отсортировать по очкам
+      const withPoints = players.filter(p => p.points !== undefined && p.points !== null);
+      const withoutPoints = players.filter(p => p.points === undefined || p.points === null);
+
+      // Сортируем по очкам (по убыванию)
+      withPoints.sort((a, b) => b.points - a.points);
+
+      // Сортируем без очков по статусам
+      const statusPriority = {
+        "Победитель": 1,
+        "Финалист": 2,
+        "Полуфиналист": 3,
+        "Прошёл": 4,
+        "Выбыл": 5,
+        "Дисквалифицирован": 6
+      };
+
+      withoutPoints.sort((a, b) => {
+        const aPriority = statusPriority[a.status] || 999;
+        const bPriority = statusPriority[b.status] || 999;
+        return aPriority - bPriority;
+      });
+
+      // Объединяем: сначала с очками, потом без
+      return [...withPoints, ...withoutPoints];
+    }
+
     async function renderTournament(container, id) {
       const tournaments = await fetchTournaments();
       const tournament = tournaments.find(t => t.id === id);
@@ -469,6 +511,9 @@
           const nextStage = tournament.stages[idx + 1];
           const isFinal = !nextStage;
 
+          // Сортируем игроков этапа
+          const sortedPlayers = sortStagePlayers([...stage.players]);
+
           html += `
             <div class="stage-box">
               <div class="stage-title">
@@ -479,7 +524,7 @@
               <ul class="stage-players">
           `;
 
-          stage.players.forEach(player => {
+          sortedPlayers.forEach((player, playerIndex) => {
             const passed = nextStage && nextStage.players.some(p => p.nickname === player.nickname);
             let pointsHtml = '';
             if (player.points !== undefined && player.points !== null) {
@@ -488,8 +533,15 @@
               pointsHtml = `<span class="points ${pointsClass}">${displayPoints}</span>`;
             }
 
+            // Определяем класс бейджа места
+            let placeClass = "player-place";
+            if (playerIndex === 0) placeClass += " place-1";
+            else if (playerIndex === 1) placeClass += " place-2";
+            else if (playerIndex === 2) placeClass += " place-3";
+
             html += `
               <li class="stage-player">
+                <div class="${placeClass}">${playerIndex + 1}</div>
                 <img src="${player.discordAvatar || 'https://via.placeholder.com/40'}" class="avatar" onerror="this.src='https://via.placeholder.com/40'">
                 <strong>${player.nickname}</strong>
                 ${player.status ? `<span class="ms-2 badge bg-secondary">${player.status}</span>` : ''}
@@ -912,4 +964,3 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
