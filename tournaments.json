@@ -62,6 +62,12 @@
             "discordAvatar": "https://cdn.discordapp.com/avatars/339411674920517633/7384594849898404f4cc1d0c561d6bd8.webp?size=80",
             "status": null,
             "points": null
+            },
+            {
+            "nickname": "Yuuichi",
+            "discordAvatar": "https://cdn.discordapp.com/avatars/341130943572082699/959317c03c4a5514dedd5f4a6a926c98.webp?size=80",
+            "status": null,
+            "points": null
             }
         ]
         }
@@ -70,4 +76,5 @@
   ]
 
 }
+
 
