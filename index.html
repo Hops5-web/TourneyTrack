@@ -399,7 +399,7 @@
       tournaments.forEach(t => {
         const statusClass = getStatusBadgeClass(t.status);
         const gameBadge = t.game ? `<span class="game-badge">${t.game}</span>` : '';
-        const responsible = t.responsible ? `<div class="mt-2"><span class="responsible-badge">👤 ${t.responsible}</span></div>` : '';
+        const responsible = t.responsible ? `<div class="mb-3 mt-2"><span class="responsible-badge">👤 ${t.responsible}</span></div>` : '';
 
         html += `
           <div class="col-md-6 col-lg-4">
@@ -408,7 +408,7 @@
                 <h5 class="card-title">${t.title}</h5>
                 ${gameBadge ? `<div class="mb-2">${gameBadge}</div>` : ''}
                 <div class="text-muted small mb-2">📅 ${t.date}</div>
-                <span class="badge bg-${statusClass} mb-3 align-self-start">${t.status || '—'}</span>
+                <span class="badge bg-${statusClass} mb-2 align-self-start">${t.status || '—'}</span>
                 ${responsible}
                 <a href="#/tournament/${t.id}" class="btn btn-primary mt-auto">Подробнее</a>
               </div>
@@ -912,3 +912,4 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
