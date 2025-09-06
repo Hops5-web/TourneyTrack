@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Турнирная Платформа</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Общие стили */
+    body { 
+      padding-top: 70px; 
+      overflow-x: hidden; 
+    }
+    .theme-toggle { 
+      position: fixed; 
+      top: 15px; 
+      right: 15px; 
+      z-index: 1000; 
+    }
+    .avatar { 
+      width: 40px; 
+      height: 40px; 
+      border-radius: 50%; 
+      margin-right: 10px; 
+      object-fit: cover; 
+      border: 2px solid var(--bs-border-color);
+    }
+    .page-header { 
+      margin-bottom: 2rem; 
+      padding-bottom: 1rem; 
+      border-bottom: 2px solid var(--bs-border-color); 
+    }
+    .section-title { 
+      font-weight: 600; 
+      color: var(--bs-heading-color, var(--bs-body-color)); 
+      margin-bottom: 1.25rem; 
+      font-size: 1.5rem;
+    }
+
+    /* Leaderboard */
+    .leaderboard-item { 
+      display: flex; 
+      align-items: center; 
+      padding: 1rem; 
+      margin-bottom: 0.75rem; 
+      background: var(--bs-card-bg); 
+      border-radius: 12px; 
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08); 
+      border: 1px solid var(--bs-border-color);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .leaderboard-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+    .place-badge { 
+      width: 40px; 
+      height: 40px; 
+      border-radius: 50%; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      margin-right: 1rem; 
+      font-weight: bold; 
+      color: white; 
+      font-size: 1.1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .place-1 { background: #FFD700; color: #333; }
+    .place-2 { background: #C0C0C0; }
+    .place-3 { background: #CD7F32; }
+    .place-other { background: var(--bs-secondary); }
+    .points.positive { 
+      color: var(--bs-success); 
+      font-weight: 600; 
+      font-size: 1.1rem;
+    }
+    .points.negative { 
+      color: var(--bs-danger); 
+      font-weight: 600; 
+      font-size: 1.1rem;
+    }
+
+    /* Этапы */
+    .stage-box { 
+      background: var(--bs-tertiary-bg); 
+      padding: 1.25rem; 
+      border-radius: 12px; 
+      margin-bottom: 1.5rem; 
+      border: 1px solid var(--bs-border-color);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .stage-title { 
+      font-weight: 600; 
+      margin-bottom: 0.75rem; 
+      display: flex; 
+      align-items: center; 
+      flex-wrap: wrap; 
+      gap: 0.75rem;
+      font-size: 1.25rem;
+    }
+    .stage-meta { 
+      font-size: 0.95rem; 
+      color: var(--bs-secondary-color); 
+      background: rgba(0,0,0,0.05); 
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      [data-bs-theme="dark"] & {
+        background: rgba(255,255,255,0.05);
+      }
+    }
+    .stage-players { 
+      list-style: none; 
+      padding: 0; 
+    }
+    .stage-player { 
+      display: flex; 
+      align-items: center; 
+      padding: 0.5rem 0; 
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .arrow-right { 
+      color: var(--bs-secondary-color); 
+      margin: 0 0.75rem; 
+      font-weight: bold; 
+      font-size: 1.1rem;
+    }
+
+    /* Конструктор */
+    .constructor-section { 
+      background: var(--bs-secondary-bg); 
+      padding: 1.5rem; 
+      border-radius: 12px; 
+      margin-bottom: 1.5rem; 
+      border: 1px solid var(--bs-border-color);
+    }
+    .constructor-item { 
+      background: var(--bs-body-bg); 
+      padding: 1.25rem; 
+      border-radius: 12px; 
+      margin-bottom: 1.25rem; 
+      position: relative; 
+      border: 1px solid var(--bs-border-color);
+    }
+    .btn-remove { 
+      position: absolute; 
+      top: 12px; 
+      right: 12px; 
+    }
+    .global-players-container {
+      max-height: 320px;
+      overflow-y: auto;
+      padding: 1rem;
+      background: var(--bs-tertiary-bg);
+      border-radius: 12px;
+      margin: 1rem 0;
+      border: 1px solid var(--bs-border-color);
+    }
+    .global-player-item {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem;
+      background: var(--bs-body-bg);
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      border: 1px solid var(--bs-border-color-translucent);
+    }
+
+    /* Описание турнира */
+    .tournament-description {
+      background: var(--bs-tertiary-bg);
+      padding: 1.25rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      white-space: pre-line;
+      border: 1px solid var(--bs-border-color);
+      line-height: 1.6;
+    }
+
+    /* Ответственный */
+    .responsible-badge {
+      font-size: 0.95rem;
+      background: var(--bs-primary);
+      color: white;
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      display: inline-block;
+      font-weight: 500;
+    }
+
+    /* Game badge */
+    .game-badge {
+      font-weight: 500;
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      background: var(--bs-success);
+      color: white;
+    }
+
+    /* Статус этапа */
+    .stage-status-badge {
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Навигация -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#/">Турнирная Платформа</a>
+      <button class="btn btn-outline-secondary theme-toggle" onclick="toggleTheme()">🌙 / ☀️</button>
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="#/rules">Правила</a>
+        <a class="nav-link" href="#/tournaments">Турниры</a>
+        <a class="nav-link" href="#/constructor">Конструктор</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div id="app"></div>
+  </div>
+
+  <script>
+    // === Глобальные функции ===
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-bs-theme');
+      const newTheme = current === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-bs-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    }
+
+    if (localStorage.getItem('theme')) {
+      document.documentElement.setAttribute('data-bs-theme', localStorage.getItem('theme'));
+    }
+
+    async function fetchTournaments() {
+      try {
+        const response = await fetch('tournaments.json');
+        const data = await response.json();
+        return data.tournaments || [];
+      } catch (err) {
+        console.error("Ошибка загрузки турниров:", err);
+        return [];
+      }
+    }
+
+    // Роутинг
+    function router() {
+      const hash = window.location.hash || '#/';
+      const app = document.getElementById('app');
+
+      if (hash === '#/rules') {
+        renderRules(app);
+      } else if (hash === '#/constructor') {
+        renderConstructor(app);
+      } else if (hash.startsWith('#/tournament/')) {
+        const id = hash.split('/').pop();
+        renderTournament(app, id);
+      } else {
+        renderTournamentsList(app);
+      }
+    }
+
+    // === Рендеры ===
+
+    function renderRules(container) {
+      container.innerHTML = `
+        <div class="page-header">
+          <h1 class="section-title">📜 Правила проведения турниров</h1>
+        </div>
+
+        <div class="card p-4">
+          <h5>Основные правила:</h5>
+          <ol>
+            <li><strong>Подсказки запрещены</strong> — игрок не должен помогать другим, шептать, жестикулировать или передавать информацию любым способом.<br>→ <em>Выговор + снятие очков за вопрос / раунд.</em></li>
+            <li><strong>Мешать другим — нельзя</strong> — громкие выкрики, перебивания, саботаж хода соперника недопустимы.<br>→ <em>Выговор + снятие очков / удаление из игры при повторе.</em></li>
+            <li><strong>Использование внешних устройств</strong> — телефоны, заметки, интернет — запрещены во время игры.<br>→ <em>Автоматическое аннулирование хода + штрафные очки.</em></li>
+            <li><strong>Нарушение порядка хода</strong> — отвечать можно только после ведущего, не перебивая.<br>→ <em>Ответ не засчитывается, ход передаётся сопернику.</em></li>
+            <li><strong>Оскорбления и неуважение</strong> — к игрокам, ведущему, зрителям — недопустимы.<br>→ <em>Предупреждение → при повторе — удаление из игры.</em></li>
+          </ol>
+
+          <h5 class="mt-4">Полномочия ведущего:</h5>
+          <ul>
+            <li>Ведущий — главный арбитр. Имеет право:
+              <ul>
+                <li>Анулировать / доначислить / снять очки.</li>
+                <li>Изменить или отменить правило на месте.</li>
+                <li>Удалить игрока за грубое нарушение.</li>
+              </ul>
+            </li>
+            <li>Решение ведущего в рамках игры — окончательно.</li>
+          </ul>
+
+          <h5 class="mt-4">Обжалование:</h5>
+          <p>Игроки могут обжаловать решение <strong>только после окончания игры</strong>, приложив доказательства (видео, скриншоты, свидетельства).<br>
+          Решения рассматриваются в <strong>двустороннем порядке</strong> между игроком и организаторами.</p>
+
+          <p class="text-muted mt-3"><em>Правила могут корректироваться ведущим в процессе игры — непредвиденные ситуации требуют гибкости. Цель — честная и весёлая игра для всех.</em></p>
+        </div>
+      `;
+    }
+
+    async function renderTournamentsList(container) {
+      const tournaments = await fetchTournaments();
+      container.innerHTML = `
+        <div class="page-header">
+          <h1 class="section-title">🏆 Турниры</h1>
+        </div>
+      `;
+
+      if (tournaments.length === 0) {
+        container.innerHTML += `<div class="alert alert-info">Нет доступных турниров.</div>`;
+        return;
+      }
+
+      let html = `<div class="row g-3">`;
+      tournaments.forEach(t => {
+        const statusClass = getStatusBadgeClass(t.status);
+        const gameBadge = t.game ? `<span class="game-badge">${t.game}</span>` : '';
+        const responsible = t.responsible ? `<div class="mb-3 mt-2"><span class="responsible-badge">👤 ${t.responsible}</span></div>` : '';
+
+        html += `
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">${t.title}</h5>
+                ${gameBadge ? `<div class="mb-2">${gameBadge}</div>` : ''}
+                <div class="text-muted small mb-2">📅 ${t.date}</div>
+                <span class="badge bg-${statusClass} mb-2 align-self-start">${t.status || '—'}</span>
+                ${responsible}
+                <a href="#/tournament/${t.id}" class="btn btn-primary mt-auto">Подробнее</a>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      html += `</div>`;
+      container.innerHTML += html;
+    }
+
+    function getStatusBadgeClass(status) {
+      if (!status) return "secondary";
+      if (status.includes("Завершён")) return "success";
+      if (status.includes("Идёт")) return "warning";
+      if (status.includes("Планируется")) return "info";
+      return "secondary";
+    }
+
+    async function renderTournament(container, id) {
+      const tournaments = await fetchTournaments();
+      const tournament = tournaments.find(t => t.id === id);
+
+      if (!tournament) {
+        container.innerHTML = `<div class="alert alert-danger">Турнир не найден.</div>`;
+        return;
+      }
+
+      let html = `
+        <div class="page-header">
+          <h1 class="section-title">${tournament.title}</h1>
+          <div class="d-flex flex-wrap align-items-center gap-3 text-muted mt-2">
+            <span>📅 ${tournament.date}</span>
+            <span class="badge bg-${getStatusBadgeClass(tournament.status)}">${tournament.status || '—'}</span>
+            ${tournament.game ? `<span class="game-badge">${tournament.game}</span>` : ''}
+            ${tournament.responsible ? `<span class="responsible-badge">👤 ${tournament.responsible}</span>` : ''}
+          </div>
+        </div>
+      `;
+
+      // Описание
+      if (tournament.description) {
+        html += `
+          <div class="tournament-description">
+            <h5>📋 Описание турнира</h5>
+            <div>${tournament.description}</div>
+          </div>
+        `;
+      }
+
+      // Этапы
+      if (tournament.stages && tournament.stages.length > 0) {
+        html += `<h3 class="mt-4 mb-3">🔄 Этапы турнира</h3>`;
+        tournament.stages.forEach((stage, idx) => {
+          const nextStage = tournament.stages[idx + 1];
+          const isFinal = !nextStage;
+
+          html += `
+            <div class="stage-box">
+              <div class="stage-title">
+                Этап ${idx + 1}: ${stage.name || `Раунд ${idx + 1}`}
+                <span class="stage-status-badge bg-${getStageStatusClass(stage.status)}">${stage.status || '—'}</span>
+                ${stage.datetime ? `<span class="stage-meta">🕗 ${stage.datetime}</span>` : ''}
+              </div>
+              <ul class="stage-players">
+          `;
+
+          stage.players.forEach(player => {
+            const passed = nextStage && nextStage.players.some(p => p.nickname === player.nickname);
+            let pointsHtml = '';
+            if (player.points !== undefined && player.points !== null) {
+              const pointsClass = player.points > 0 ? 'positive' : player.points < 0 ? 'negative' : '';
+              const displayPoints = player.points >= 0 ? `+${player.points}` : player.points;
+              pointsHtml = `<span class="points ${pointsClass}">${displayPoints}</span>`;
+            }
+
+            html += `
+              <li class="stage-player">
+                <img src="${player.discordAvatar || 'https://via.placeholder.com/40'}" class="avatar" onerror="this.src='https://via.placeholder.com/40'">
+                <strong>${player.nickname}</strong>
+                ${player.status ? `<span class="ms-2 badge bg-secondary">${player.status}</span>` : ''}
+                ${pointsHtml}
+                ${passed ? '<span class="arrow-right">→ Прошёл</span>' : ''}
+              </li>
+            `;
+          });
+
+          html += `</ul></div>`;
+        });
+      }
+
+      // Итоговый рейтинг — только если включено
+      if (tournament.showFinalRanking !== false && tournament.stages?.length > 0) {
+        const finalStage = tournament.stages[tournament.stages.length - 1];
+        if (finalStage.players.some(p => p.points !== undefined && p.points !== null)) {
+          const sorted = [...finalStage.players]
+            .filter(p => p.points !== undefined && p.points !== null)
+            .sort((a, b) => b.points - a.points);
+
+          if (sorted.length > 0) {
+            html += `<h3 class="mt-5 mb-3">🏅 Итоговый рейтинг</h3>`;
+            sorted.forEach((p, i) => {
+              const place = i + 1;
+              let placeClass = "place-other";
+              if (place === 1) placeClass = "place-1";
+              else if (place === 2) placeClass = "place-2";
+              else if (place === 3) placeClass = "place-3";
+
+              let pointsHtml = '';
+              if (p.points !== undefined && p.points !== null) {
+                const pointsClass = p.points > 0 ? 'positive' : p.points < 0 ? 'negative' : '';
+                const displayPoints = p.points >= 0 ? `+${p.points}` : p.points;
+                pointsHtml = `<div class="points ${pointsClass} fs-5">${displayPoints}</div>`;
+              }
+
+              html += `
+                <div class="leaderboard-item">
+                  <div class="place-badge ${placeClass}">${place}</div>
+                  <img src="${p.discordAvatar || 'https://via.placeholder.com/40'}" class="avatar" onerror="this.src='https://via.placeholder.com/40'">
+                  <div class="flex-grow-1">
+                    <strong>${p.nickname}</strong>
+                    ${p.status ? `<div><span class="badge bg-secondary">${p.status}</span></div>` : ''}
+                  </div>
+                  ${pointsHtml}
+                </div>
+              `;
+            });
+          }
+        }
+      }
+
+      container.innerHTML = html;
+    }
+
+    async function renderConstructor(container) {
+      const tournaments = await fetchTournaments();
+      container.innerHTML = `
+        <div class="page-header">
+          <h1 class="section-title">🛠️ Конструктор турнира</h1>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">Выберите турнир для редактирования (опционально)</label>
+          <select id="editSelect" class="form-select">
+            <option value="">— Создать новый —</option>
+          </select>
+        </div>
+
+        <div class="constructor-section">
+          <h4>Основная информация</h4>
+          <div class="mb-3">
+            <label class="form-label">ID турнира (латиница, без пробелов)</label>
+            <input type="text" id="tournamentId" class="form-control" placeholder="tournament_spring_2025">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Название турнира</label>
+            <input type="text" id="tournamentTitle" class="form-control" placeholder="Весенний Турнир 2025">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Игра</label>
+            <input type="text" id="tournamentGame" class="form-control" placeholder="SIGAME / Codenames / Квиз и т.д.">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Ответственный за турнир</label>
+            <input type="text" id="tournamentResponsible" class="form-control" placeholder="Имя, ник, роль (например: @Host, Оргкомитет)">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Описание турнира</label>
+            <textarea id="tournamentDescription" class="form-control" rows="3" placeholder="Формат, особые правила, призы, контакты и т.д."></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Дата турнира (общая)</label>
+            <input type="text" id="tournamentDate" class="form-control" placeholder="15 марта 2025">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Статус турнира</label>
+            <select id="tournamentStatus" class="form-select">
+              <option value="Планируется">Планируется</option>
+              <option value="Идёт">Идёт</option>
+              <option value="Завершён">Завершён</option>
+            </select>
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="showFinalRanking" checked>
+            <label class="form-check-label" for="showFinalRanking">Показывать итоговый рейтинг</label>
+          </div>
+        </div>
+
+        <div class="constructor-section">
+          <h4>👥 Глобальный список участников</h4>
+          <p>Добавьте всех игроков здесь — потом выбирайте их в этапах через выпадающий список.</p>
+          <div id="globalPlayersContainer" class="global-players-container"></div>
+          <button class="btn btn-outline-primary mt-2" onclick="addGlobalPlayer()">➕ Добавить игрока</button>
+        </div>
+
+        <div class="constructor-section">
+          <h4>Этапы турнира</h4>
+          <div id="stagesContainer"></div>
+          <button class="btn btn-success mt-2" onclick="addStage()">➕ Добавить этап</button>
+        </div>
+
+        <button class="btn btn-primary mt-3" onclick="generateJSON()">📥 Сгенерировать JSON</button>
+
+        <div class="mt-4">
+          <h5>Результат:</h5>
+          <textarea id="resultJSON" class="form-control" rows="10" readonly></textarea>
+          <button class="btn btn-outline-secondary mt-2" onclick="copyJSON()">📋 Копировать</button>
+          <div class="alert alert-warning mt-2">
+            <strong>Инструкция:</strong> Скопируйте JSON и вручную замените содержимое tournaments.json
+          </div>
+        </div>
+      `;
+
+      // Заполняем список для редактирования
+      const editSelect = document.getElementById('editSelect');
+      tournaments.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t.id;
+        opt.textContent = `${t.title} (${t.id})`;
+        editSelect.appendChild(opt);
+      });
+
+      editSelect.addEventListener('change', (e) => {
+        if (e.target.value) {
+          const tour = tournaments.find(t => t.id === e.target.value);
+          if (tour) loadTournamentToForm(tour);
+        } else {
+          clearForm();
+        }
+      });
+
+      // Инициализация
+      window.globalPlayerIndex = 0;
+      window.stageIndex = 0;
+      addGlobalPlayer();
+      addStage();
+    }
+
+    function clearForm() {
+      document.getElementById('tournamentId').value = '';
+      document.getElementById('tournamentTitle').value = '';
+      document.getElementById('tournamentGame').value = '';
+      document.getElementById('tournamentResponsible').value = '';
+      document.getElementById('tournamentDescription').value = '';
+      document.getElementById('tournamentDate').value = '';
+      document.getElementById('tournamentStatus').value = 'Планируется';
+      document.getElementById('showFinalRanking').checked = true;
+      document.getElementById('globalPlayersContainer').innerHTML = '';
+      document.getElementById('stagesContainer').innerHTML = '';
+      window.globalPlayerIndex = 0;
+      window.stageIndex = 0;
+      addGlobalPlayer();
+      addStage();
+    }
+
+    function loadTournamentToForm(t) {
+      document.getElementById('tournamentId').value = t.id || '';
+      document.getElementById('tournamentTitle').value = t.title || '';
+      document.getElementById('tournamentGame').value = t.game || '';
+      document.getElementById('tournamentResponsible').value = t.responsible || '';
+      document.getElementById('tournamentDescription').value = t.description || '';
+      document.getElementById('tournamentDate').value = t.date || '';
+      document.getElementById('tournamentStatus').value = t.status || 'Планируется';
+      document.getElementById('showFinalRanking').checked = t.showFinalRanking !== false;
+
+      const globalContainer = document.getElementById('globalPlayersContainer');
+      globalContainer.innerHTML = '';
+      window.globalPlayerIndex = 0;
+
+      // Собираем всех уникальных игроков
+      const allPlayers = new Map();
+      if (t.stages) {
+        t.stages.forEach(stage => {
+          stage.players.forEach(p => {
+            if (!allPlayers.has(p.nickname)) {
+              allPlayers.set(p.nickname, p);
+            }
+          });
+        });
+      }
+
+      allPlayers.forEach(player => {
+        addGlobalPlayer(player);
+      });
+
+      const stagesContainer = document.getElementById('stagesContainer');
+      stagesContainer.innerHTML = '';
+      window.stageIndex = 0;
+
+      if (t.stages && t.stages.length > 0) {
+        t.stages.forEach(stage => {
+          addStage(stage);
+        });
+      } else {
+        addStage();
+      }
+    }
+
+    function addGlobalPlayer(playerData = null) {
+      const container = document.getElementById('globalPlayersContainer');
+      const idx = ++window.globalPlayerIndex;
+      const div = document.createElement('div');
+      div.className = 'global-player-item';
+      div.innerHTML = `
+        <strong>Игрок #${idx}</strong>
+        <button type="button" class="btn btn-sm btn-outline-danger ms-auto" onclick="this.closest('.global-player-item').remove()">🗑️</button>
+        <div class="w-100 mt-2">
+          <input type="text" class="form-control player-nickname" placeholder="Никнейм" value="${playerData?.nickname || ''}">
+        </div>
+        <div class="mt-1">
+          <input type="text" class="form-control player-avatar" placeholder="URL аватара Discord" value="${playerData?.discordAvatar || ''}">
+        </div>
+      `;
+      container.appendChild(div);
+    }
+
+    function getGlobalPlayers() {
+      const players = [];
+      document.querySelectorAll('#globalPlayersContainer .global-player-item').forEach(item => {
+        const nickname = item.querySelector('.player-nickname').value.trim();
+        if (!nickname) return;
+        const avatar = item.querySelector('.player-avatar').value.trim() || null;
+        players.push({ nickname, discordAvatar: avatar });
+      });
+      return players;
+    }
+
+    function addStage(stageData = null) {
+      const container = document.getElementById('stagesContainer');
+      const idx = ++window.stageIndex;
+      const div = document.createElement('div');
+      div.className = 'constructor-item';
+      div.innerHTML = `
+        <button type="button" class="btn btn-sm btn-danger btn-remove" onclick="this.closest('.constructor-item').remove()">🗑️</button>
+        <h5>Этап ${idx}</h5>
+        <div class="mb-2">
+          <label>Название этапа</label>
+          <input type="text" class="form-control stage-name" placeholder="Раунд 1" value="${stageData?.name || ''}">
+        </div>
+        <div class="mb-2">
+          <label>Дата и время этапа (опционально)</label>
+          <input type="text" class="form-control stage-datetime" placeholder="15 марта, 19:00" value="${stageData?.datetime || ''}">
+        </div>
+        <div class="mb-2">
+          <label>Статус этапа</label>
+          <select class="form-select stage-status">
+            <option value="Планируется" ${stageData?.status === 'Планируется' ? 'selected' : ''}>Планируется</option>
+            <option value="Идёт" ${stageData?.status === 'Идёт' ? 'selected' : ''}>Идёт</option>
+            <option value="Завершён" ${stageData?.status === 'Завершён' ? 'selected' : ''}>Завершён</option>
+          </select>
+        </div>
+        <h6>Игроки этапа</h6>
+        <div class="players-container"></div>
+        <button class="btn btn-outline-success btn-sm mt-2" onclick="addPlayerToStage(this)">➕ Добавить игрока из списка</button>
+      `;
+
+      const playersContainer = div.querySelector('.players-container');
+      if (stageData && stageData.players) {
+        stageData.players.forEach(player => {
+          addPlayerToStage(null, playersContainer, player);
+        });
+      }
+
+      container.appendChild(div);
+    }
+
+    function addPlayerToStage(button, container = null, playerData = null) {
+      if (!container && button) {
+        container = button.closest('.constructor-item').querySelector('.players-container');
+      }
+
+      const globalPlayers = getGlobalPlayers();
+      if (globalPlayers.length === 0) {
+        alert("Сначала добавьте игроков в глобальный список!");
+        return;
+      }
+
+      const div = document.createElement('div');
+      div.className = 'card mb-2 p-2';
+      let options = '';
+      globalPlayers.forEach(p => {
+        const selected = playerData && playerData.nickname === p.nickname ? 'selected' : '';
+        options += `<option value="${p.nickname}" ${selected}>${p.nickname}</option>`;
+      });
+
+      div.innerHTML = `
+        <div class="mb-1">
+          <label>Игрок</label>
+          <select class="form-select player-select">
+            <option value="">— Выберите игрока —</option>
+            ${options}
+          </select>
+        </div>
+        <div class="mb-1">
+          <label>Статус</label>
+          <select class="form-select player-status">
+            <option value="">— Без статуса —</option>
+            <option value="Победитель" ${playerData?.status === 'Победитель' ? 'selected' : ''}>Победитель</option>
+            <option value="Финалист" ${playerData?.status === 'Финалист' ? 'selected' : ''}>Финалист</option>
+            <option value="Полуфиналист" ${playerData?.status === 'Полуфиналист' ? 'selected' : ''}>Полуфиналист</option>
+            <option value="Прошёл" ${playerData?.status === 'Прошёл' ? 'selected' : ''}>Прошёл</option>
+            <option value="Выбыл" ${playerData?.status === 'Выбыл' ? 'selected' : ''}>Выбыл</option>
+            <option value="Дисквалифицирован" ${playerData?.status === 'Дисквалифицирован' ? 'selected' : ''}>Дисквалифицирован</option>
+          </select>
+        </div>
+        <div class="mb-1">
+          <label>Очки</label>
+          <input type="number" class="form-control player-points" placeholder="Очки" value="${playerData?.points !== undefined ? playerData.points : ''}">
+        </div>
+        <button class="btn btn-sm btn-outline-danger" type="button" onclick="this.closest('div.card').remove()">🗑️ Удалить</button>
+      `;
+      container.appendChild(div);
+    }
+
+    function generateJSON() {
+      const id = document.getElementById('tournamentId').value.trim();
+      const title = document.getElementById('tournamentTitle').value.trim();
+      const game = document.getElementById('tournamentGame').value.trim() || null;
+      const responsible = document.getElementById('tournamentResponsible').value.trim() || null;
+      const description = document.getElementById('tournamentDescription').value.trim() || null;
+      const date = document.getElementById('tournamentDate').value.trim();
+      const status = document.getElementById('tournamentStatus').value;
+      const showFinalRanking = document.getElementById('showFinalRanking').checked;
+
+      if (!id || !title) {
+        alert('Заполните ID и название турнира!');
+        return;
+      }
+
+      const globalPlayers = getGlobalPlayers();
+      if (globalPlayers.length === 0) {
+        alert('Добавьте хотя бы одного игрока!');
+        return;
+      }
+
+      const stages = [];
+      document.querySelectorAll('#stagesContainer > .constructor-item').forEach(stageDiv => {
+        const name = stageDiv.querySelector('.stage-name').value.trim() || null;
+        const datetime = stageDiv.querySelector('.stage-datetime').value.trim() || null;
+        const stageStatus = stageDiv.querySelector('.stage-status').value || 'Планируется';
+
+        const players = [];
+        stageDiv.querySelectorAll('.players-container > .card').forEach(playerDiv => {
+          const nickname = playerDiv.querySelector('.player-select').value.trim();
+          if (!nickname) return;
+
+          const globalPlayer = globalPlayers.find(p => p.nickname === nickname);
+          const status = playerDiv.querySelector('.player-status').value || null;
+          const pointsStr = playerDiv.querySelector('.player-points').value.trim();
+          const points = pointsStr === '' ? null : parseInt(pointsStr);
+
+          players.push({
+            nickname,
+            discordAvatar: globalPlayer?.discordAvatar || null,
+            status,
+            points
+          });
+        });
+
+        if (players.length > 0) {
+          stages.push({ name, datetime, status: stageStatus, players });
+        }
+      });
+
+      if (stages.length === 0) {
+        alert('Добавьте хотя бы один этап с игроками!');
+        return;
+      }
+
+      const tournamentObject = {
+        id, title, game, responsible, description, date, status, showFinalRanking, stages
+      };
+
+      const jsonString = JSON.stringify(tournamentObject, null, 2);
+      document.getElementById('resultJSON').value = jsonString;
+    }
+
+    function copyJSON() {
+      const textarea = document.getElementById('resultJSON');
+      textarea.select();
+      document.execCommand('copy');
+      alert('JSON скопирован в буфер обмена!');
+    }
+
+    function getStageStatusClass(status) {
+      if (!status) return "secondary";
+      if (status === "Завершён") return "success";
+      if (status === "Идёт") return "warning";
+      if (status === "Планируется") return "info";
+      return "secondary";
+    }
+
+    // Запуск
+    window.addEventListener('hashchange', router);
+    window.addEventListener('load', router);
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

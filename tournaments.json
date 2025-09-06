@@ -1,0 +1,59 @@
+{
+  "tournaments": [
+    {
+    "id": "sigame_autumn_2025",
+    "title": "Осенний турнир по SIGAME",
+    "game": "SIGAME",
+    "responsible": "@SuperHops5",
+    "description": "ДАМЫ И ГОСПОДА, СОБИРАЕМСЯ ИГРАТЬ, ЧТО БЫ ОБЪЕДИНИТЬСЯ! 🤜🤛\n\nТурнир для новичков? Да!\nВеселье? Обязательно!\nВопросы: тематические, от ведущего.",
+    "date": "6 сентября 2025",
+    "status": "Планируется",
+    "showFinalRanking": false,
+    "stages": [
+        {
+        "name": "Отборочный раунд 1 ( Группа А )",
+        "datetime": "6 сентября, 18:00",
+        "status": "Планируется",
+        "players": [
+            {
+            "nickname": "Larry",
+            "discordAvatar": "https://cdn.discordapp.com/avatars/293448903804846080/273a7caec8b241af50a506f1f5e1a146.webp?size=80",
+            "status": null,
+            "points": null
+            },
+            {
+            "nickname": "Grotery",
+            "discordAvatar": "https://cdn.discordapp.com/avatars/178467466211622912/0cf623fe9347ca223ca2e4e69deacf3b.webp?size=80",
+            "status": null,
+            "points": null
+            },
+            {
+            "nickname": "ZeroNeiz",
+            "discordAvatar": "https://cdn.discordapp.com/avatars/493690854901547010/fe95fcfc06826d786498b703b0d9954d.webp?size=80",
+            "status": null,
+            "points": null
+            },
+            {
+            "nickname": "Damir",
+            "discordAvatar": "https://cdn.discordapp.com/avatars/955920825066856478/e6b340e6abf8e17d1285458cf6e6bd8f.webp?size=80",
+            "status": null,
+            "points": null
+            },
+            {
+            "nickname": "Kido",
+            "discordAvatar": "https://cdn.discordapp.com/avatars/757886169877971046/a15cbf97d302fa0aa18b236d120de199.webp?size=80",
+            "status": null,
+            "points": null
+            },
+            {
+            "nickname": "Unflattering",
+            "discordAvatar": "https://cdn.discordapp.com/avatars/220649832820375552/025b381009b00167124cf248b8b53480.webp?size=80",
+            "status": null,
+            "points": null
+            }
+        ]
+        }
+    ]
+    }
+  ]
+}
