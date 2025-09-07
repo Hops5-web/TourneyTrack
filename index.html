@@ -131,12 +131,6 @@
       flex-wrap: wrap;
       gap: 0.5rem;
     }
-    .arrow-right {
-      color: var(--bs-secondary-color);
-      margin: 0 0.75rem;
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
     .player-place {
       width: 32px;
       height: 32px;
@@ -525,7 +519,6 @@
           `;
 
           sortedPlayers.forEach((player, playerIndex) => {
-            const passed = nextStage && nextStage.players.some(p => p.nickname === player.nickname);
             let pointsHtml = '';
             if (player.points !== undefined && player.points !== null) {
               const pointsClass = player.points > 0 ? 'positive' : player.points < 0 ? 'negative' : '';
@@ -546,7 +539,6 @@
                 <strong>${player.nickname}</strong>
                 ${player.status ? `<span class="ms-2 badge bg-secondary">${player.status}</span>` : ''}
                 ${pointsHtml}
-                ${passed ? '<span class="arrow-right">→ Прошёл</span>' : ''}
               </li>
             `;
           });
