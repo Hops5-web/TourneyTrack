@@ -1,6 +1,6 @@
 {
   "tournaments": [
-{
+    {
   "id": "sigame_autumn_2025",
   "title": "Осенний турнир по SIGAME",
   "game": "SIGAME",
@@ -76,8 +76,58 @@
           "points": 15965
         }
       ]
+    },
+    {
+      "name": "Отборочный раунд 1 ( Группа Б )",
+      "datetime": "7 сентября 2025",
+      "status": "Завершён",
+      "players": [
+        {
+          "nickname": "Джек @funder_55",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/1404181317955883189/50fa95d26bedcac11dabf33d3cd1c98f.webp?size=80",
+          "status": "Полуфиналист",
+          "points": 9800
+        },
+        {
+          "nickname": "Я снова жру траву... @akutagawa_190",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/1361313016687231017/bf7e15fb25c9fd2597c7b4058080f3f6.webp?size=80",
+          "status": "Прошёл",
+          "points": 4755
+        },
+        {
+          "nickname": "damir (reebze) @nahkubtahke",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/955920825066856478/e6b340e6abf8e17d1285458cf6e6bd8f.webp?size=80",
+          "status": "Прошёл",
+          "points": 8000
+        },
+        {
+          "nickname": "Spiderdemon @spiderdemon",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/835472325611880478/613d64b592180b20abf0515123e08aba.webp?size=80",
+          "status": "Полуфиналист",
+          "points": 260000
+        },
+        {
+          "nickname": "Topas @topasnotgaytoday",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/614377587413745665/0e870b82a67457b0c5b1cf177ebb1498.webp?size=80",
+          "status": "Полуфиналист",
+          "points": 33392
+        },
+        {
+          "nickname": "TerribleWorker @terribleworker",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/291292158286233601/3e5e6d3f4c5b1b09c148fc6b9b5432aa.webp?size=80",
+          "status": "Полуфиналист",
+          "points": 8499
+        },
+        {
+          "nickname": "Pankuh @pankuh",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/963365066030350336/cb6a23cf31020a3e46a4b4d3586e84db.webp?size=80",
+          "status": "Прошёл",
+          "points": 2
+        }
+      ]
     }
   ]
 }
   ]
 }
+
