@@ -1,244 +1,245 @@
 {
   "tournaments": [
     {
-      "id": "sigame_autumn_2025",
-      "title": "Осенний турнир по SIGAME",
-      "game": "SIGAME",
-      "responsible": "@Hops5",
-      "description": "ДАМЫ И ГОСПОДА, СОБИРАЕМСЯ ИГРАТЬ, ЧТО БЫ ОБЪЕДИНИТЬСЯ! 🤜🤛\n\nТурнир для новичков? Да!\nВеселье? Обязательно!\nВопросы: тематические, от ведущего.",
-      "date": "6 сентября 2025",
-      "status": "Идёт",
-      "showFinalRanking": false,
-      "stages": [
+  "id": "sigame_autumn_2025",
+  "title": "Осенний турнир по SIGAME",
+  "game": "SIGAME",
+  "responsible": "@Hops5",
+  "description": "ДАМЫ И ГОСПОДА, СОБИРАЕМСЯ ИГРАТЬ, ЧТО БЫ ОБЪЕДИНИТЬСЯ! 🤜🤛\n\nТурнир для новичков? Да!\nВеселье? Обязательно!\nВопросы: тематические, от ведущего.",
+  "date": "6 сентября 2025",
+  "status": "Идёт",
+  "showFinalRanking": false,
+  "stages": [
+    {
+      "name": "Отборочный раунд 1 ( Группа А )",
+      "datetime": "6 сентября, 20:00",
+      "status": "Завершён",
+      "players": [
         {
-          "name": "Отборочный раунд 1 ( Группа А )",
-          "datetime": "6 сентября, 20:00",
-          "status": "Завершён",
-          "players": [
-            {
-              "nickname": "Larry @equalite",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/293448903804846080/273a7caec8b241af50a506f1f5e1a146.webp?size=80",
-              "status": "Полуфиналист",
-              "points": 880256
-            },
-            {
-              "nickname": "Grotery @grotery",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/178467466211622912/0cf623fe9347ca223ca2e4e69deacf3b.webp?size=80",
-              "status": "Прошёл",
-              "points": 0
-            },
-            {
-              "nickname": "ZeroNeiz @zeroneiz",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/493690854901547010/fe95fcfc06826d786498b703b0d9954d.webp?size=80",
-              "status": "Выбыл",
-              "points": -2
-            },
-            {
-              "nickname": "Kido @tsubomikid",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/757886169877971046/a15cbf97d302fa0aa18b236d120de199.webp?size=80",
-              "status": "Прошёл",
-              "points": -1
-            },
-            {
-              "nickname": "Unflattering @untry",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/220649832820375552/025b381009b00167124cf248b8b53480.webp?size=80",
-              "status": "Полуфиналист",
-              "points": 281320
-            },
-            {
-              "nickname": "элькАпонэ⁴² @kashtaniha",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/437184131818979339/5a6c9160d45239b0c0717c1f0858bddc.webp?size=80",
-              "status": "Выбыл",
-              "points": -204
-            },
-            {
-              "nickname": "Шмаромойка @mimozies",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/339411674920517633/7384594849898404f4cc1d0c561d6bd8.webp?size=80",
-              "status": "Прошёл",
-              "points": 0
-            },
-            {
-              "nickname": "Yuuichi @yuu1chi",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/341130943572082699/959317c03c4a5514dedd5f4a6a926c98.webp?size=80",
-              "status": "Прошёл",
-              "points": 1
-            },
-            {
-              "nickname": "аDсКiй_Dр04iЛа⁴² @adckidp04ila",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/471301843822051329/7ab5fda83d8cd429070f7eee76f02a1b.webp?size=80",
-              "status": "Полуфиналист",
-              "points": 5400
-            },
-            {
-              "nickname": "gaygaf @gaygaf",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/746498334398873659/adf618a84c0cd93ea6d095ad27457ad5.webp?size=80",
-              "status": "Полуфиналист",
-              "points": 15965
-            }
-          ]
+          "nickname": "Larry @equalite",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/293448903804846080/273a7caec8b241af50a506f1f5e1a146.webp?size=80",
+          "status": "Полуфиналист",
+          "points": 880256
         },
         {
-          "name": "Отборочный раунд 1 ( Группа Б )",
-          "datetime": "7 сентября 2025",
-          "status": "Завершён",
-          "players": [
-            {
-              "nickname": "Джек @funder_55",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/1404181317955883189/50fa95d26bedcac11dabf33d3cd1c98f.webp?size=80",
-              "status": "Полуфиналист",
-              "points": 9800
-            },
-            {
-              "nickname": "Я снова жру траву... @akutagawa_190",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/1361313016687231017/bf7e15fb25c9fd2597c7b4058080f3f6.webp?size=80",
-              "status": "Прошёл",
-              "points": 4755
-            },
-            {
-              "nickname": "damir (reebze) @nahkubtahke",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/955920825066856478/e6b340e6abf8e17d1285458cf6e6bd8f.webp?size=80",
-              "status": "Прошёл",
-              "points": 8000
-            },
-            {
-              "nickname": "Spiderdemon @spiderdemon",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/835472325611880478/613d64b592180b20abf0515123e08aba.webp?size=80",
-              "status": "Полуфиналист",
-              "points": 260000
-            },
-            {
-              "nickname": "Topas @topasnotgaytoday",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/614377587413745665/0e870b82a67457b0c5b1cf177ebb1498.webp?size=80",
-              "status": "Полуфиналист",
-              "points": 33392
-            },
-            {
-              "nickname": "TerribleWorker @terribleworker",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/291292158286233601/3e5e6d3f4c5b1b09c148fc6b9b5432aa.webp?size=80",
-              "status": "Полуфиналист",
-              "points": 8499
-            },
-            {
-              "nickname": "Pankuh @pankuh",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/963365066030350336/cb6a23cf31020a3e46a4b4d3586e84db.webp?size=80",
-              "status": "Прошёл",
-              "points": 2
-            }
-          ]
+          "nickname": "Grotery @grotery",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/178467466211622912/0cf623fe9347ca223ca2e4e69deacf3b.webp?size=80",
+          "status": "Прошёл",
+          "points": 0
         },
         {
-          "name": "Финал ( Для умников )",
-          "datetime": "-",
-          "status": "Планируется",
-          "players": [
-            {
-              "nickname": "Larry @equalite",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/293448903804846080/273a7caec8b241af50a506f1f5e1a146.webp?size=80",
-              "status": null,
-              "points": null
-            },
-            {
-              "nickname": "Unflattering @untry",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/220649832820375552/025b381009b00167124cf248b8b53480.webp?size=80",
-              "status": null,
-              "points": null
-            },
-            {
-              "nickname": "gaygaf @gaygaf",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/746498334398873659/adf618a84c0cd93ea6d095ad27457ad5.webp?size=80",
-              "status": null,
-              "points": null
-            },
-            {
-              "nickname": "аDсКiй_Dр04iЛа⁴² @adckidp04ila",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/471301843822051329/7ab5fda83d8cd429070f7eee76f02a1b.webp?size=80",
-              "status": null,
-              "points": null
-            },
-            {
-              "nickname": "Spiderdemon @spiderdemon",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/835472325611880478/613d64b592180b20abf0515123e08aba.webp?size=80",
-              "status": null,
-              "points": null
-            },
-            {
-              "nickname": "Topas @topasnotgaytoday",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/614377587413745665/0e870b82a67457b0c5b1cf177ebb1498.webp?size=80",
-              "status": null,
-              "points": null
-            },
-            {
-              "nickname": "Джек @funder_55",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/1404181317955883189/50fa95d26bedcac11dabf33d3cd1c98f.webp?size=80",
-              "status": null,
-              "points": null
-            },
-            {
-              "nickname": "TerribleWorker @terribleworker",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/291292158286233601/3e5e6d3f4c5b1b09c148fc6b9b5432aa.webp?size=80",
-              "status": null,
-              "points": null
-            }
-          ]
+          "nickname": "ZeroNeiz @zeroneiz",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/493690854901547010/fe95fcfc06826d786498b703b0d9954d.webp?size=80",
+          "status": "Выбыл",
+          "points": -2
         },
         {
-          "name": "Финал ( Для молодых дарований )",
-          "datetime": "-",
-          "status": "Планируется",
-          "players": [
-            {
-              "nickname": "Yuuichi @yuu1chi",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/341130943572082699/959317c03c4a5514dedd5f4a6a926c98.webp?size=80",
-              "status": null,
-              "points": null
-            },
-            {
-              "nickname": "Grotery @grotery",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/178467466211622912/0cf623fe9347ca223ca2e4e69deacf3b.webp?size=80",
-              "status": null,
-              "points": null
-            },
-            {
-              "nickname": "Шмаромойка @mimozies",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/339411674920517633/7384594849898404f4cc1d0c561d6bd8.webp?size=80",
-              "status": null,
-              "points": null
-            },
-            {
-              "nickname": "Kido @tsubomikid",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/757886169877971046/a15cbf97d302fa0aa18b236d120de199.webp?size=80",
-              "status": null,
-              "points": null
-            },
-            {
-              "nickname": "damir (reebze) @nahkubtahke",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/955920825066856478/e6b340e6abf8e17d1285458cf6e6bd8f.webp?size=80",
-              "status": null,
-              "points": null
-            },
-            {
-              "nickname": "Я снова жру траву... @akutagawa_190",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/1361313016687231017/bf7e15fb25c9fd2597c7b4058080f3f6.webp?size=80",
-              "status": null,
-              "points": null
-            },
-            {
-              "nickname": "Pankuh @pankuh",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/963365066030350336/cb6a23cf31020a3e46a4b4d3586e84db.webp?size=80",
-              "status": null,
-              "points": null
-            },
-            {
-              "nickname": "элькАпонэ⁴² @kashtaniha",
-              "discordAvatar": "https://cdn.discordapp.com/avatars/437184131818979339/5a6c9160d45239b0c0717c1f0858bddc.webp?size=80",
-              "status": null,
-              "points": null
-            }
-          ]
+          "nickname": "Kido @tsubomikid",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/757886169877971046/a15cbf97d302fa0aa18b236d120de199.webp?size=80",
+          "status": "Прошёл",
+          "points": -1
+        },
+        {
+          "nickname": "Unflattering @untry",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/220649832820375552/025b381009b00167124cf248b8b53480.webp?size=80",
+          "status": "Полуфиналист",
+          "points": 281320
+        },
+        {
+          "nickname": "элькАпонэ⁴² @kashtaniha",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/437184131818979339/5a6c9160d45239b0c0717c1f0858bddc.webp?size=80",
+          "status": "Выбыл",
+          "points": -204
+        },
+        {
+          "nickname": "Шмаромойка @mimozies",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/339411674920517633/7384594849898404f4cc1d0c561d6bd8.webp?size=80",
+          "status": "Прошёл",
+          "points": 0
+        },
+        {
+          "nickname": "Yuuichi @yuu1chi",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/341130943572082699/959317c03c4a5514dedd5f4a6a926c98.webp?size=80",
+          "status": "Прошёл",
+          "points": 1
+        },
+        {
+          "nickname": "аDсКiй_Dр04iЛа⁴² @adckidp04ila",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/471301843822051329/7ab5fda83d8cd429070f7eee76f02a1b.webp?size=80",
+          "status": "Полуфиналист",
+          "points": 5400
+        },
+        {
+          "nickname": "gaygaf @gaygaf",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/746498334398873659/adf618a84c0cd93ea6d095ad27457ad5.webp?size=80",
+          "status": "Полуфиналист",
+          "points": 15965
+        }
+      ]
+    },
+    {
+      "name": "Отборочный раунд 1 ( Группа Б )",
+      "datetime": "7 сентября 2025",
+      "status": "Завершён",
+      "players": [
+        {
+          "nickname": "Джек @funder_55",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/1404181317955883189/50fa95d26bedcac11dabf33d3cd1c98f.webp?size=80",
+          "status": "Полуфиналист",
+          "points": 9800
+        },
+        {
+          "nickname": "Я снова жру траву... @akutagawa_190",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/1361313016687231017/bf7e15fb25c9fd2597c7b4058080f3f6.webp?size=80",
+          "status": "Прошёл",
+          "points": 4755
+        },
+        {
+          "nickname": "damir (reebze) @nahkubtahke",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/955920825066856478/e6b340e6abf8e17d1285458cf6e6bd8f.webp?size=80",
+          "status": "Прошёл",
+          "points": 8000
+        },
+        {
+          "nickname": "Spiderdemon @spiderdemon",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/835472325611880478/613d64b592180b20abf0515123e08aba.webp?size=80",
+          "status": "Полуфиналист",
+          "points": 260000
+        },
+        {
+          "nickname": "Topas @topasnotgaytoday",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/614377587413745665/0e870b82a67457b0c5b1cf177ebb1498.webp?size=80",
+          "status": "Полуфиналист",
+          "points": 33392
+        },
+        {
+          "nickname": "TerribleWorker @terribleworker",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/291292158286233601/3e5e6d3f4c5b1b09c148fc6b9b5432aa.webp?size=80",
+          "status": "Полуфиналист",
+          "points": 8499
+        },
+        {
+          "nickname": "Pankuh @pankuh",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/963365066030350336/cb6a23cf31020a3e46a4b4d3586e84db.webp?size=80",
+          "status": "Прошёл",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "name": "Финал ( Для умников )",
+      "datetime": "13 сентября, 20:00",
+      "status": "Планируется",
+      "players": [
+        {
+          "nickname": "Larry @equalite",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/293448903804846080/273a7caec8b241af50a506f1f5e1a146.webp?size=80",
+          "status": null,
+          "points": null
+        },
+        {
+          "nickname": "Unflattering @untry",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/220649832820375552/025b381009b00167124cf248b8b53480.webp?size=80",
+          "status": null,
+          "points": null
+        },
+        {
+          "nickname": "gaygaf @gaygaf",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/746498334398873659/adf618a84c0cd93ea6d095ad27457ad5.webp?size=80",
+          "status": null,
+          "points": null
+        },
+        {
+          "nickname": "аDсКiй_Dр04iЛа⁴² @adckidp04ila",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/471301843822051329/7ab5fda83d8cd429070f7eee76f02a1b.webp?size=80",
+          "status": null,
+          "points": null
+        },
+        {
+          "nickname": "Spiderdemon @spiderdemon",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/835472325611880478/613d64b592180b20abf0515123e08aba.webp?size=80",
+          "status": null,
+          "points": null
+        },
+        {
+          "nickname": "Topas @topasnotgaytoday",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/614377587413745665/0e870b82a67457b0c5b1cf177ebb1498.webp?size=80",
+          "status": null,
+          "points": null
+        },
+        {
+          "nickname": "Джек @funder_55",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/1404181317955883189/50fa95d26bedcac11dabf33d3cd1c98f.webp?size=80",
+          "status": null,
+          "points": null
+        },
+        {
+          "nickname": "TerribleWorker @terribleworker",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/291292158286233601/3e5e6d3f4c5b1b09c148fc6b9b5432aa.webp?size=80",
+          "status": null,
+          "points": null
+        }
+      ]
+    },
+    {
+      "name": "Финал ( Для молодых дарований )",
+      "datetime": "13 сентября, 18:00",
+      "status": "Планируется",
+      "players": [
+        {
+          "nickname": "Yuuichi @yuu1chi",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/341130943572082699/959317c03c4a5514dedd5f4a6a926c98.webp?size=80",
+          "status": null,
+          "points": null
+        },
+        {
+          "nickname": "Grotery @grotery",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/178467466211622912/0cf623fe9347ca223ca2e4e69deacf3b.webp?size=80",
+          "status": null,
+          "points": null
+        },
+        {
+          "nickname": "Шмаромойка @mimozies",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/339411674920517633/7384594849898404f4cc1d0c561d6bd8.webp?size=80",
+          "status": null,
+          "points": null
+        },
+        {
+          "nickname": "Kido @tsubomikid",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/757886169877971046/a15cbf97d302fa0aa18b236d120de199.webp?size=80",
+          "status": null,
+          "points": null
+        },
+        {
+          "nickname": "damir (reebze) @nahkubtahke",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/955920825066856478/e6b340e6abf8e17d1285458cf6e6bd8f.webp?size=80",
+          "status": null,
+          "points": null
+        },
+        {
+          "nickname": "Я снова жру траву... @akutagawa_190",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/1361313016687231017/bf7e15fb25c9fd2597c7b4058080f3f6.webp?size=80",
+          "status": null,
+          "points": null
+        },
+        {
+          "nickname": "Pankuh @pankuh",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/963365066030350336/cb6a23cf31020a3e46a4b4d3586e84db.webp?size=80",
+          "status": null,
+          "points": null
+        },
+        {
+          "nickname": "элькАпонэ⁴² @kashtaniha",
+          "discordAvatar": "https://cdn.discordapp.com/avatars/437184131818979339/5a6c9160d45239b0c0717c1f0858bddc.webp?size=80",
+          "status": null,
+          "points": null
         }
       ]
     }
   ]
 }
+  ]
+}
+
 
 
